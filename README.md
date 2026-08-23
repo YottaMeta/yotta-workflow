@@ -1,7 +1,19 @@
-# workflow-standard · 跨会话/跨项目工作流标准
+<p align="center">
+  <img src="assets/banner.png" alt="workflow-standard banner" width="100%" />
+</p>
 
-> 一套面向所有 AI 智能体的通用工作流标准：开工必读状态、状态就近存、进行中自动记流水/任务/决策、收工必留交接锚点。
-> 通过「流程全局定、状态就近存」，让任何 AI 会话都能无痛接续，避免单会话拉长而失忆。
+<h1 align="center">workflow-standard · 跨会话/跨项目工作流标准</h1>
+
+<p align="center">一套面向所有 AI 智能体的通用工作流标准：开工必读状态、状态就近存、进行中自动记流水/任务/决策、收工必留交接锚点。通过「流程全局定、状态就近存」，让任何 AI 会话都能无痛接续，避免单会话拉长而失忆。</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue" /></a>
+  <a href="https://agentskills.io/"><img alt="Standard: agentskills.io" src="https://img.shields.io/badge/standard-agentskills.io-orange" /></a>
+  <a href="https://www.npmjs.com/package/@yottameta/workflow-standard"><img alt="npm package" src="https://img.shields.io/npm/v/@yottameta/workflow-standard" /></a>
+  <a href="https://github.com/YottaMeta/workflow-standard"><img alt="GitHub stars" src="https://img.shields.io/github/stars/YottaMeta/workflow-standard" /></a>
+  <a href="https://github.com/YottaMeta/workflow-standard/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/YottaMeta/workflow-standard" /></a>
+  <a href="https://github.com/YottaMeta/workflow-standard"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen" /></a>
+</p>
 
 ## 这是什么
 
