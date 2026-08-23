@@ -135,19 +135,21 @@ function main() {
   const PROJECT_DIRS = [
     '.claude/skills',
     '.cursor/skills',
-    '.agents/skills',
     '.codex/skills',
-    '.windsurf/skills',
+    '.config/goose/skills',
+    '.config/agents/skills',
     '.opencode/skills',
-    '.gemini/skills',
+    '.codeium/windsurf/skills',
     '.workbuddy/skills',
     '.kiro/skills',
-    '.goose/skills',
-    '.trae/skills',
     '.traecli/skills',
+    '.gemini/skills',
+    '.trae-cn/skills',
     '.qwen/skills',
     '.comate/skills',
     '.codebuddy/skills',
+    '.kimi/skills',
+    '.agents/skills',
   ];
   let installedAny = false;
   for (const d of PROJECT_DIRS) {

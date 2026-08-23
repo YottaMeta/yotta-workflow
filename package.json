@@ -1,6 +1,6 @@
 {
   "name": "@yottameta/workflow-standard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Universal cross-session, cross-project workflow standard for AI agents: 开工读状态、状态就近存、进行中记流水/任务/决策、收工留交接锚点。适合所有 AI 智能体的通用工作流。",
   "license": "MIT",
   "keywords": [

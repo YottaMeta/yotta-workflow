@@ -1,7 +1,7 @@
 ---
 name: workflow-standard
 description: "Universal cross-session, cross-project workflow standard for AI agents: 开工必读状态、状态就近存、进行中自动记流水/任务/决策、收工必留交接锚点。Use when starting or ending a working session, resuming a project, or whenever project state changes. 适合所有 AI 智能体的通用工作流。Not for one-off read-only questions."
-version: 0.1.0
+version: 0.1.1
 license: MIT
 agent_created: true
 metadata:

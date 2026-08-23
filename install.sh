@@ -121,7 +121,7 @@ main() {
     echo "完成。"; return
   fi
   local installed=0 d
-  for d in .claude/skills .cursor/skills .agents/skills .codex/skills .windsurf/skills .opencode/skills .gemini/skills .workbuddy/skills .kiro/skills .goose/skills .trae/skills .traecli/skills .qwen/skills .comate/skills .codebuddy/skills; do
+  for d in .claude/skills .cursor/skills .codex/skills .config/goose/skills .config/agents/skills .opencode/skills .codeium/windsurf/skills .workbuddy/skills .kiro/skills .traecli/skills .gemini/skills .trae-cn/skills .qwen/skills .comate/skills .codebuddy/skills .kimi/skills .agents/skills; do
     if [ -d "$d" ]; then install_to "$d"; installed=1; fi
   done
   if [ "$installed" = "0" ]; then
