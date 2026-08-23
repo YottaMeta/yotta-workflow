@@ -68,7 +68,7 @@ bash install.sh --dir /path/to/skills
 开始一个会话时，读取项目状态：
 
 ```text
-请先读取 .codex\STATE.md、TASKS.md、ROADMAP.md，恢复项目上下文。
+请先读取 .workflow\STATE.md、TASKS.md、ROADMAP.md，恢复项目上下文。
 ```
 
 收工时，按本技能格式生成交接锚点，并原样输出给用户复制，供下个会话使用。
