@@ -2,7 +2,7 @@
   <img src="assets/banner.png" alt="yotta-workflow banner" width="100%" />
 </p>
 
-<h1 align="center">yotta-workflow · 跨会话 / 跨项目工作流标准</h1>
+<h1 align="center">yotta-workflow · 元序</h1>
 
 <p align="center">一套面向所有 AI 智能体的通用工作流标准：<b>流程全局定、状态就近存；开工必读状态，收工必留锚点</b>。让任何 AI 会话都能无痛接续，避免单会话拉长而失忆。</p>
 <p align="center">状态目录统一 <code>.workflow</code>——同一项目所有智能体会话读写同一份状态（一个真相源）；开工读状态恢复上下文、进行中主动落盘流水 / 任务 / 决策、收工生成自包含交接锚点。</p>
