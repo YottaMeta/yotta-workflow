@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/banner.png" alt="workflow-standard banner" width="100%" />
+  <img src="assets/banner.png" alt="yotta-workflow banner" width="100%" />
 </p>
 
-<h1 align="center">workflow-standard · 跨会话 / 跨项目工作流标准</h1>
+<h1 align="center">yotta-workflow · 跨会话 / 跨项目工作流标准</h1>
 
 <p align="center">一套面向所有 AI 智能体的通用工作流标准：<b>流程全局定、状态就近存；开工必读状态，收工必留锚点</b>。让任何 AI 会话都能无痛接续，避免单会话拉长而失忆。</p>
 <p align="center">状态目录统一 <code>.workflow</code>——同一项目所有智能体会话读写同一份状态（一个真相源）；开工读状态恢复上下文、进行中主动落盘流水 / 任务 / 决策、收工生成自包含交接锚点。</p>
@@ -11,17 +11,17 @@
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue" /></a>
   <a href="https://agentskills.io/"><img alt="Standard: agentskills.io" src="https://img.shields.io/badge/standard-agentskills.io-orange" /></a>
-  <a href="https://www.npmjs.com/package/@yottameta/workflow-standard"><img alt="npm package" src="https://img.shields.io/npm/v/@yottameta/workflow-standard" /></a>
-  <a href="https://github.com/YottaMeta/workflow-standard"><img alt="GitHub stars" src="https://img.shields.io/github/stars/YottaMeta/workflow-standard" /></a>
-  <a href="https://github.com/YottaMeta/workflow-standard/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/YottaMeta/workflow-standard" /></a>
-  <a href="https://github.com/YottaMeta/workflow-standard"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen" /></a>
+  <a href="https://www.npmjs.com/package/@yottameta/yotta-workflow"><img alt="npm package" src="https://img.shields.io/npm/v/@yottameta/yotta-workflow" /></a>
+  <a href="https://github.com/YottaMeta/yotta-workflow"><img alt="GitHub stars" src="https://img.shields.io/github/stars/YottaMeta/yotta-workflow" /></a>
+  <a href="https://github.com/YottaMeta/yotta-workflow/commits/main"><img alt="last commit" src="https://img.shields.io/github/last-commit/YottaMeta/yotta-workflow" /></a>
+  <a href="https://github.com/YottaMeta/yotta-workflow"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen" /></a>
 </p>
 
 ## 这是什么
 
 AI 会话本身是无状态的：每次对话相互独立，聊得越长越容易失忆，换个会话或换个智能体就接不上前文。各平台自带的记忆方案通常只服务单一智能体，不同智能体各记各的，还会产生多个「真相源」。
 
-workflow-standard 把「跨会话协作」沉淀为一套与智能体无关的协议，回答三个问题：
+yotta-workflow 把「跨会话协作」沉淀为一套与智能体无关的协议，回答三个问题：
 
 - **状态放哪里、以什么格式记录**——统一由规则判定，不靠各智能体自由发挥。
 - **什么时候读、什么时候写**——开工必读、进行中主动写、收工必留锚点。
@@ -137,8 +137,8 @@ workflow-standard 把「跨会话协作」沉淀为一套与智能体无关的�
 ### 方式一：npm（推荐，一行安装）
 ```bash
 # 国内加速（可选）：npm config set registry https://registry.npmmirror.com
-npx -y @yottameta/workflow-standard -g
-npx -y @yottameta/workflow-standard --dir <你的技能目录>   # 任意智能体：指定目录安装
+npx -y @yottameta/yotta-workflow -g
+npx -y @yottameta/yotta-workflow --dir <你的技能目录>   # 任意智能体：指定目录安装
 ```
 > 智能体不在预置列表里？用 `--dir` 指定它的 skills 目录，或手动复制（方式三）。`--list` 可查看各智能体对应的默认目录。
 
@@ -153,33 +153,33 @@ bash install.sh --dir /path/to/skills
 > 覆盖 17 类智能体，含国内 Trae / Qwen / Comate / CodeBuddy / Kimi。Windows 用户：装有 Git Bash 即可用；否则用方式三手动复制。
 
 ### 方式三：手动复制
-把整个 `workflow-standard` 文件夹复制到目标智能体的 skills 目录。常见位置（用户级；Windows 用 `%USERPROFILE%`，Linux/macOS 用 `~`）：
+把整个 `yotta-workflow` 文件夹复制到目标智能体的 skills 目录。常见位置（用户级；Windows 用 `%USERPROFILE%`，Linux/macOS 用 `~`）：
 
 | 智能体 | 用户级目录 | 项目级目录 |
 |---|---|---|
-| Codex | `%USERPROFILE%\.codex\skills\workflow-standard\` | `.codex\skills\` |
-| Claude Code | `%USERPROFILE%\.claude\skills\workflow-standard\` | `.claude\skills\` |
-| Cursor | `%USERPROFILE%\.cursor\skills\workflow-standard\` | `.cursor\skills\` |
-| Windsurf | `%USERPROFILE%\.codeium\windsurf\skills\workflow-standard\` | `.windsurf\skills\` |
-| opencode | `%USERPROFILE%\.config\opencode\skills\workflow-standard\` | `.opencode\skills\` |
-| Gemini | `%USERPROFILE%\.gemini\skills\workflow-standard\` | `.gemini\skills\` |
-| Goose | `%USERPROFILE%\.config\goose\skills\workflow-standard\` | `.goose\skills\` |
-| Amp | `%USERPROFILE%\.config\agents\skills\workflow-standard\` | `.agents\skills\` |
-| Kiro | `%USERPROFILE%\.kiro\skills\workflow-standard\` | `.kiro\skills\` |
-| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\workflow-standard\` | `.workbuddy\skills\` |
-| Trae Code CLI | `%USERPROFILE%\.traecli\skills\workflow-standard\` | `.traecli\skills\` |
-| Trae IDE（国内） | `%USERPROFILE%\.trae-cn\skills\workflow-standard\` | `.trae\skills\` |
-| Qwen Code | `%USERPROFILE%\.qwen\skills\workflow-standard\` | `.qwen\skills\` |
-| Comate 文心快码 | `%USERPROFILE%\.comate\skills\workflow-standard\` | `.comate\skills\` |
-| CodeBuddy Code | `%USERPROFILE%\.codebuddy\skills\workflow-standard\` | `.codebuddy\skills\` |
-| Kimi Code CLI | `%USERPROFILE%\.kimi\skills\workflow-standard\` | `.kimi\skills\` |
+| Codex | `%USERPROFILE%\.codex\skills\yotta-workflow\` | `.codex\skills\` |
+| Claude Code | `%USERPROFILE%\.claude\skills\yotta-workflow\` | `.claude\skills\` |
+| Cursor | `%USERPROFILE%\.cursor\skills\yotta-workflow\` | `.cursor\skills\` |
+| Windsurf | `%USERPROFILE%\.codeium\windsurf\skills\yotta-workflow\` | `.windsurf\skills\` |
+| opencode | `%USERPROFILE%\.config\opencode\skills\yotta-workflow\` | `.opencode\skills\` |
+| Gemini | `%USERPROFILE%\.gemini\skills\yotta-workflow\` | `.gemini\skills\` |
+| Goose | `%USERPROFILE%\.config\goose\skills\yotta-workflow\` | `.goose\skills\` |
+| Amp | `%USERPROFILE%\.config\agents\skills\yotta-workflow\` | `.agents\skills\` |
+| Kiro | `%USERPROFILE%\.kiro\skills\yotta-workflow\` | `.kiro\skills\` |
+| WorkBuddy | `%USERPROFILE%\.workbuddy\skills\yotta-workflow\` | `.workbuddy\skills\` |
+| Trae Code CLI | `%USERPROFILE%\.traecli\skills\yotta-workflow\` | `.traecli\skills\` |
+| Trae IDE（国内） | `%USERPROFILE%\.trae-cn\skills\yotta-workflow\` | `.trae\skills\` |
+| Qwen Code | `%USERPROFILE%\.qwen\skills\yotta-workflow\` | `.qwen\skills\` |
+| Comate 文心快码 | `%USERPROFILE%\.comate\skills\yotta-workflow\` | `.comate\skills\` |
+| CodeBuddy Code | `%USERPROFILE%\.codebuddy\skills\yotta-workflow\` | `.codebuddy\skills\` |
+| Kimi Code CLI | `%USERPROFILE%\.kimi\skills\yotta-workflow\` | `.kimi\skills\` |
 
 > 通用约定：`.agents/skills` 并非所有智能体都读取（Claude Code 与 Codex 默认不读），仅为 OpenCode / Cursor / Cline / Amp / Kimi / Gemini CLI 等智能体识别。已修改默认目录的智能体，请用 `--dir` 指定实际路径。
 
 ## 升级 / 卸载
 
-- **升级**：重新安装最新版覆盖即可——`npx -y @yottameta/workflow-standard -g` 或重跑 `bash install.sh -g`。技能目录内的旧文件会被覆盖；项目里的状态文件（`.workflow\`）不受影响。
-- **卸载**：删除目标智能体 skills 目录下的 `workflow-standard` 文件夹（各智能体目录见上表）。卸载不影响已写入项目的状态文件。
+- **升级**：重新安装最新版覆盖即可——`npx -y @yottameta/yotta-workflow -g` 或重跑 `bash install.sh -g`。技能目录内的旧文件会被覆盖；项目里的状态文件（`.workflow\`）不受影响。
+- **卸载**：删除目标智能体 skills 目录下的 `yotta-workflow` 文件夹（各智能体目录见上表）。卸载不影响已写入项目的状态文件。
 
 ## 常见问题
 
@@ -189,7 +189,7 @@ bash install.sh --dir /path/to/skills
 
 ## 开发与校验
 
-本项目内运行：`python tools/validate-skill.py workflow-standard`。
+本项目内运行：`python tools/validate-skill.py yotta-workflow`。
 
 ## 许可证
 

@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 /**
- * workflow-standard 跨平台安装器（YottaSkills）
+ * yotta-workflow 跨平台安装器（YottaSkills）
  * 用法:
- *   npx -y @yottameta/workflow-standard --agent <name>  # 按智能体默认用户级目录安装（推荐）
- *   npx -y @yottameta/workflow-standard --dir PATH      # 装到指定目录（用户改了目录的智能体）
- *   npx -y @yottameta/workflow-standard -g              # 安装到全部已知智能体用户级目录
- *   npx -y @yottameta/workflow-standard                 # 安装到检测到的项目级目录
- *   npx -y @yottameta/workflow-standard --list          # 列出智能体 -> 默认目录
+ *   npx -y @yottameta/yotta-workflow --agent <name>  # 按智能体默认用户级目录安装（推荐）
+ *   npx -y @yottameta/yotta-workflow --dir PATH      # 装到指定目录（用户改了目录的智能体）
+ *   npx -y @yottameta/yotta-workflow -g              # 安装到全部已知智能体用户级目录
+ *   npx -y @yottameta/yotta-workflow                 # 安装到检测到的项目级目录
+ *   npx -y @yottameta/yotta-workflow --list          # 列出智能体 -> 默认目录
  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const SKILL_NAME = 'workflow-standard';
+const SKILL_NAME = 'yotta-workflow';
 const PKG_ROOT = path.join(__dirname, '..');
 
 // 智能体 -> 用户级默认技能目录（dirs 按优先级排列；--agent 装到第一个）

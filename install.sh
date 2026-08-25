@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# workflow-standard 多智能体安装脚本（YottaSkills）
+# yotta-workflow 多智能体安装脚本（YottaSkills）
 # 用法:
 #   bash install.sh --agent <name>  # 按智能体默认用户级目录安装
 #   bash install.sh --dir <path>    # 装到指定目录（用户改过目录的智能体）
@@ -8,7 +8,7 @@
 #   bash install.sh --list          # 列出智能体 -> 默认目录
 set -euo pipefail
 
-SKILL_NAME="workflow-standard"
+SKILL_NAME="yotta-workflow"
 SOURCE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 case "$(uname -s)" in
   MINGW*|MSYS*)
