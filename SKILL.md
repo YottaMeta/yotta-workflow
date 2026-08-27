@@ -1,7 +1,7 @@
 ---
 name: yotta-workflow
 description: "跨会话/跨项目通用工作流标准：让任何 AI 智能体活过会话——开工必读状态、状态就近存 .workflow、进行中自动记流水/任务/决策、收工必留交接锚点。触发：开工/接手项目、续测、收工、跨会话恢复、要落盘、多步开发、项目状态变化、跨智能体协作。项目型会话自动初始化 .workflow 状态目录并按本协议全程执行；轻量一次性问答不强制初始化。所有 AI 智能体通用。"
-version: 0.2.4
+version: 0.2.5
 license: MIT
 agent_created: true
 metadata:
