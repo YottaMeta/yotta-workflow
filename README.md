@@ -182,6 +182,12 @@ bash install.sh --list           # list agents -> default directories
 
 Run inside this project: `python tools/validate-skill.py yotta-workflow`.
 
+## References
+
+- references/faq.md
+- references/walkthroughs.md
+- references/exception-playbook.md
+
 ## License
 
 MIT © YottaMeta

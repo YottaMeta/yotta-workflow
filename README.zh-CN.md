@@ -182,6 +182,12 @@ bash install.sh --list           # 列出智能体 -> 默认目录
 
 本项目内运行：`python tools/validate-skill.py yotta-workflow`。
 
+## 参考文档
+
+- references/faq.md
+- references/walkthroughs.md
+- references/exception-playbook.md
+
 ## 许可证
 
 MIT © YottaMeta
