@@ -3,7 +3,7 @@
 ## 走查 1：项目开工
 
 1. 先看用户是否明确指定项目根；再看 cwd 向上是否有已有 `.workflow\STATE.md`。
-2. 没有已有状态时，区分项目根、源码目录和工作区根；`.git` 只作辅助线索。
+2. 两者都没有时停止初始化，先问“项目根目录是哪一个？”；不得用 `.git`、`package.json`、`src`、`README` 或 cwd 猜。
 3. 读取项目根下 `.workflow\` 的 STATE / TASKS / ROADMAP / DECISIONS。
 4. 汇总当前进度与下一步。
 5. 执行前先确认本次会话目标与验收。

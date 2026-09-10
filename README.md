@@ -60,9 +60,9 @@ It depends on no specific agent or platform: the state is just Markdown files un
 
 | Directory | Definition | Where `.workflow` goes |
 |---|---|---|
-| **Project root** | Management boundary for one project; it may have no Git at all or may be the same directory as the source root | `<project root>\.workflow\` |
-| **Source directory** | Actual code / repository location; may be nested under the project root | Not there, unless it is also explicitly the project root |
-| **Workspace root** | Container holding multiple independent project roots | Not there; choose the relevant project first |
+| **Project root** | Owns the whole project state; it may have no Git at all or may be the same directory as the source root | `<project root>\.workflow\` |
+| **Source directory** | Holds code / a repository; it is only a location inside the project | Not there, unless the user explicitly says it is also the project root |
+| **Workspace root** | Container holding multiple project roots; it owns no project state | Not there; choose the relevant project root first |
 
 ```text
 <workspace root>\
@@ -74,12 +74,11 @@ It depends on no specific agent or platform: the state is just Markdown files un
     └── app\
 ```
 
-**Resolution order:**
+**Resolution order (two signals only):**
 
 1. The user explicitly specifies a project root → use it.
-2. Walk upward from the cwd and use the nearest existing `.workflow\STATE.md` → keep it in place; **never auto-migrate it**.
-3. If no state exists, classify project root / source directory / workspace root. `.git` is supporting evidence only and never decides the project root by itself.
-4. If the boundary is still ambiguous, ask before initializing; do not create `.workflow` in a source directory or workspace root by guesswork.
+2. Walk upward from the cwd and use the nearest existing `.workflow\STATE.md`; its parent is the project root. Keep it in place; **never auto-migrate it**.
+3. If neither signal exists, stop and ask: `What is this task's project root directory?` Do not infer it from `.git`, `package.json`, `src`, `README`, the cwd, or directory structure.
 
 > A project can be both the project root and the source root (a single-repository project). The invariant is that state follows the project root, not an arbitrary Git repository.
 
@@ -192,7 +191,7 @@ bash install.sh --list           # list agents -> default directories
 
 ## FAQ
 
-- **Where is the state directory?** Walk upward from the cwd to find an existing `.workflow\`; otherwise determine the project root by the path model. State always lives at `<project root>\.workflow\`, not in a source directory or workspace root.
+- **Where is the state directory?** Accept an explicitly specified project root first; otherwise walk upward from the cwd to find an existing `.workflow\`. If neither exists, ask. State always lives at `<project root>\.workflow\`, not in a source directory or workspace root.
 - **Multiple agents out of sync?** Confirm they point to the same project directory (the same `.workflow\`). This skill is designed to share one state; if each built its own `.workflow`, the project directory differs.
 - **The source directory has `.git`; should state live there?** Not by that signal alone. A source checkout can be nested under the project root; if an upper-level `.workflow` exists or the user named the project root, keep using that project root.
 - **Project already has its own handoff mechanism?** Keep it, only satisfying the two mandatory points: read state on start, update state and leave an anchor on finish.
