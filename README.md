@@ -76,7 +76,7 @@ It depends on no specific agent or platform: the state is just Markdown files un
 2. Walk upward from the cwd and use the nearest existing `.workflow\STATE.md`; its parent is the project root. Keep it in place; **never auto-migrate it**.
 3. If neither signal exists, stop and ask: `What is this task's project root directory?` Do not infer it from `.git`, `package.json`, `src`, `README`, the cwd, or directory structure.
 
-> By default, the project root and source directory are separate; they overlap only when the user explicitly says the source directory is also the project root. The invariant is that state follows the project root, not an arbitrary Git repository.
+> This skill defines only the standard layout and state location. How a real project names or layers its source directories is left to the user to adapt.
 
 ### Project state system (five file types)
 
@@ -189,7 +189,7 @@ bash install.sh --list           # list agents -> default directories
 
 - **Where is the state directory?** Accept an explicitly specified project root first; otherwise walk upward from the cwd to find an existing `.workflow\`. If neither exists, ask. State always lives at `<project root>\.workflow\`, not in a source directory or workspace root.
 - **Multiple agents out of sync?** Confirm they point to the same project directory (the same `.workflow\`). This skill is designed to share one state; if each built its own `.workflow`, the project directory differs.
-- **The source directory has `.git`; should state live there?** Not by that signal alone. A source checkout can be nested under the project root; if an upper-level `.workflow` exists or the user named the project root, keep using that project root.
+- **The source directory has `.git`; should state live there?** Not by that signal alone. State belongs under the project-root `.workflow`; the user decides how source directories are organized.
 - **Project already has its own handoff mechanism?** Keep it, only satisfying the two mandatory points: read state on start, update state and leave an anchor on finish.
 
 ## Development & checks
