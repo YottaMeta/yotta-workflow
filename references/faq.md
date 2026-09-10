@@ -27,7 +27,7 @@
 | 源码目录 | 代码 / 资源 / 某个仓库所在位置 | 不放，除非用户明确说明它同时就是项目根 |
 | 工作区根目录 | 并列多个项目根的父目录 | 不放；先选具体项目根 |
 
-示例：项目根是 `D:\work\my-project`，源码目录是 `D:\work\my-project\app`，即使 `app` 有自己的 `.git`，状态仍放 `D:\work\my-project\.workflow\`。
+标准示例：项目根是 `D:\work\my-project`，源码目录是 `D:\work\my-project\src`，状态放 `D:\work\my-project\.workflow\`。即使 `src` 有自己的 `.git`，也不会改变项目根和状态位置。
 
 ## 3. 多个智能体能共享状态吗？
 

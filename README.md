@@ -56,22 +56,18 @@ It depends on no specific agent or platform: the state is just Markdown files un
 
 ### Path model and state file location rule
 
-**First distinguish three concepts: the project root is the management boundary of one project and the only anchor for `.workflow`; a source directory is just where code or a checkout lives and may have its own `.git`; a workspace root is only a container for multiple projects.**
+**First distinguish three concepts: the project root owns the whole project state and is the only anchor for `.workflow`; the source directory is normally a code subdirectory under the project root; a workspace root is only a container for multiple project roots.**
 
 | Directory | Definition | Where `.workflow` goes |
 |---|---|---|
-| **Project root** | Owns the whole project state; it may have no Git at all or may be the same directory as the source root | `<project root>\.workflow\` |
-| **Source directory** | Holds code / a repository; it is only a location inside the project | Not there, unless the user explicitly says it is also the project root |
+| **Project root** | Parent directory that owns the whole project state and normally contains both `.workflow` and the source directory | `<project root>\.workflow\` |
+| **Source directory** | Code directory under the project root; it may have its own `.git` | Not there, unless the user explicitly says it is also the project root |
 | **Workspace root** | Container holding multiple project roots; it owns no project state | Not there; choose the relevant project root first |
 
 ```text
-<workspace root>\
-├── <project A>\       # project root; .workflow goes here
-│   ├── .workflow\
-│   └── src\           # source directory; may have its own .git
-└── <project B>\       # another project root
-    ├── .workflow\
-    └── app\
+<project root>\
+├── .workflow\         # state; directly under the project root
+└── <source dir>\      # source directory; under the project root
 ```
 
 **Resolution order (two signals only):**
@@ -80,7 +76,7 @@ It depends on no specific agent or platform: the state is just Markdown files un
 2. Walk upward from the cwd and use the nearest existing `.workflow\STATE.md`; its parent is the project root. Keep it in place; **never auto-migrate it**.
 3. If neither signal exists, stop and ask: `What is this task's project root directory?` Do not infer it from `.git`, `package.json`, `src`, `README`, the cwd, or directory structure.
 
-> A project can be both the project root and the source root (a single-repository project). The invariant is that state follows the project root, not an arbitrary Git repository.
+> By default, the project root and source directory are separate; they overlap only when the user explicitly says the source directory is also the project root. The invariant is that state follows the project root, not an arbitrary Git repository.
 
 ### Project state system (five file types)
 
