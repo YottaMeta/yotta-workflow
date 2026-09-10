@@ -1,7 +1,7 @@
 {
   "name": "@yottameta/yotta-workflow",
-  "version": "0.3.0",
-  "description": "Cross-session / cross-project workflow standard for all AI agents: read the state on start, store state nearby in a unified .workflow directory, persist logs/tasks/decisions while working, and leave a self-contained handoff anchor on finish. Boundaries: records project state only; no AI personality, user preferences, relationships, or cross-project general knowledge.",
+  "version": "0.4.0",
+  "description": "Cross-session / cross-project workflow standard for all AI agents: read the state on start, keep .workflow at the project root, persist logs/tasks/decisions while working, and leave a self-contained handoff anchor on finish. The project root is the state anchor; source directories may be nested and .git alone does not define the project root.",
   "license": "MIT",
   "keywords": [
     "agent-skills",

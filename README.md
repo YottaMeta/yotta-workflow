@@ -6,7 +6,7 @@
 
 <h1 align="center">yotta-workflow · 元序 (Yuanxu)</h1>
 
-<p align="center">A universal workflow standard for all AI agents: <b>the process is set globally, the state is stored nearby; read the state on start, always leave a handoff anchor on finish</b>. Lets any AI conversation resume painlessly and avoids amnesia from overlong single sessions.</p>
+<p align="center">A universal workflow standard for all AI agents: <b>the process is set globally, state follows the project root; read the state on start, always leave a handoff anchor on finish</b>. Lets any AI conversation resume painlessly and avoids amnesia from overlong single sessions.</p>
 <p align="center">State directory is unified as <code>.workflow</code> — all agent sessions of the same project read and write the same state (one source of truth); on start, read the state to restore context; while working, actively persist logs / tasks / decisions; on finish, generate a self-contained handoff anchor.</p>
 <p align="center">Pure Markdown text, zero dependencies, no injection, no platform lock; install once, works across 78+ agents such as Claude Code / Codex / Cursor / OpenCode.</p>
 
@@ -29,12 +29,12 @@ yotta-workflow distills "cross-session collaboration" into an agent-agnostic pro
 - **When to read, when to write?** — read on start, write actively while working, always leave an anchor on finish.
 - **How to hand off?** — a fixed template generates a self-contained handoff anchor; the next session resumes painlessly from just that anchor.
 
-It depends on no specific agent or platform: the state is just Markdown files under the project directory, readable and writable by any agent or tool.
+It depends on no specific agent or platform: the state is just Markdown files under the project root, readable and writable by any agent or tool.
 
 ## Core value
 
 - **One source of truth** — all agent sessions of the same project read and write the same `.workflow\` state directory, instead of each building its own and keeping separate records.
-- **State stored nearby** — state location is decided from the session cwd, never a hard-coded default path; a project root stores nearby, a workspace root stores per-project by name.
+- **State follows the project root** — `.workflow` belongs to the project root, not to a source checkout or a workspace container; an existing `.workflow` is always reused in place and never auto-migrated.
 - **Proactive anti-amnesia** — every completed action is written to logs / tasks / decisions while working, not relied on in-conversation memory (context gets auto-compressed).
 - **Self-contained handoff** — on finish, generate a fixed-format handoff anchor; the next session restores full context from the anchor plus state files.
 - **Compatible with existing mechanisms** — if the project already has its own handoff / state mechanism, keep it, only satisfying two mandatory points: read state on start, update state and leave an anchor on finish.
@@ -45,7 +45,7 @@ It depends on no specific agent or platform: the state is just Markdown files un
 |---|---|
 | **Cross-agent unified** | follows the Agent Skills open standard (agentskills.io); install once, 78+ agents share one state protocol |
 | **One source of truth** | unified `.workflow` state directory; any agent of the same project reads/writes the same state, eliminating multiple sources of truth |
-| **Automated path detection** | take cwd → decide project root vs workspace → store nearby or separated by project name; never hard-code a path |
+| **Automated path detection** | explicit root → nearest existing `.workflow` → project root / source directory / workspace classification; never hard-code a path |
 | **Proactive persistence** | immediately write logs / tasks / decisions while working, so context compression never loses key state |
 | **Self-contained handoff anchor** | fixed template + enforced validation (content must match state files); next session resumes painlessly |
 | **Lightweight zero-dependency** | plain Markdown files, no daemon / database / injection; readable and writable on any platform |
@@ -54,16 +54,34 @@ It depends on no specific agent or platform: the state is just Markdown files un
 
 ## Protocol details
 
-### State file location rule (memo)
+### Path model and state file location rule
 
-**First take the cwd, then see whether it is a project root; if it is a project root, store nearby; if it is a workspace, store per project name; the state directory is always `.workflow`, independent of the agent used; never hard-code any default / fixed path.**
+**First distinguish three concepts: the project root is the management boundary of one project and the only anchor for `.workflow`; a source directory is just where code or a checkout lives and may have its own `.git`; a workspace root is only a container for multiple projects.**
 
-| base form | state directory |
-|---|---|
-| project root directory (contains `.git`, project config, or explicitly pointed-to single project) | `<base>\.workflow\` |
-| workspace root directory (multiple project subdirs side by side) | `<base>\<project name>\.workflow\` |
+| Directory | Definition | Where `.workflow` goes |
+|---|---|---|
+| **Project root** | Management boundary for one project; it may have no Git at all or may be the same directory as the source root | `<project root>\.workflow\` |
+| **Source directory** | Actual code / repository location; may be nested under the project root | Not there, unless it is also explicitly the project root |
+| **Workspace root** | Container holding multiple independent project roots | Not there; choose the relevant project first |
 
-> A user-specified project directory / unified workspace root uses the user's convention as the base; if unspecified, use the session start cwd as the base.
+```text
+<workspace root>\
+├── <project A>\       # project root; .workflow goes here
+│   ├── .workflow\
+│   └── src\           # source directory; may have its own .git
+└── <project B>\       # another project root
+    ├── .workflow\
+    └── app\
+```
+
+**Resolution order:**
+
+1. The user explicitly specifies a project root → use it.
+2. Walk upward from the cwd and use the nearest existing `.workflow\STATE.md` → keep it in place; **never auto-migrate it**.
+3. If no state exists, classify project root / source directory / workspace root. `.git` is supporting evidence only and never decides the project root by itself.
+4. If the boundary is still ambiguous, ask before initializing; do not create `.workflow` in a source directory or workspace root by guesswork.
+
+> A project can be both the project root and the source root (a single-repository project). The invariant is that state follows the project root, not an arbitrary Git repository.
 
 ### Project state system (five file types)
 
@@ -174,8 +192,9 @@ bash install.sh --list           # list agents -> default directories
 
 ## FAQ
 
-- **Where is the state directory?** First check whether `.workflow\` exists under the project; if not, locate it by the "state file location rule" using the session cwd as the base.
+- **Where is the state directory?** Walk upward from the cwd to find an existing `.workflow\`; otherwise determine the project root by the path model. State always lives at `<project root>\.workflow\`, not in a source directory or workspace root.
 - **Multiple agents out of sync?** Confirm they point to the same project directory (the same `.workflow\`). This skill is designed to share one state; if each built its own `.workflow`, the project directory differs.
+- **The source directory has `.git`; should state live there?** Not by that signal alone. A source checkout can be nested under the project root; if an upper-level `.workflow` exists or the user named the project root, keep using that project root.
 - **Project already has its own handoff mechanism?** Keep it, only satisfying the two mandatory points: read state on start, update state and leave an anchor on finish.
 
 ## Development & checks
@@ -185,6 +204,7 @@ Run inside this project: `python tools/validate-skill.py yotta-workflow`.
 ## References
 
 - references/faq.md
+- references/path-model.md
 - references/walkthroughs.md
 - references/exception-playbook.md
 
