@@ -1,5 +1,13 @@
 # 更新日志
 
+## v0.4.1 (2026-09-13)
+
+**P0-4.4 元序 before_start / after_milestone 试点**：
+
+- 新增 `skill-manifest.json`，声明 `before_start` / `read_state` 与 `after_milestone` / `write_state`。
+- Codex 两个事件均为 `native-audit`：缺少状态文件证据或落盘失败时输出 `explicit-unverified` + 一次纠偏，不宣称动作前硬拦截。
+- 元阁适配器回归验证 `file_path` 证据与里程碑纠偏结果。
+
 ## v0.4.0 (2026-09-10)
 
 **路径模型澄清**：明确项目根目录、源码目录与工作区根目录的区别，采用“项目根目录 / `.workflow` / 源码目录”标准结构，避免把带 `.git` 的源码目录误当项目根目录。技能只规定标准形态；具体项目的源码布局由用户自行调整。
