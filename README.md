@@ -153,8 +153,8 @@ Pick any of the four methods below; the order is the recommended priority. Skill
 
 ```text
 # Optional China mirror: npm config set registry https://registry.npmmirror.com
-npx -y @yottameta/yotta-workflow --agent <agent-name>      # install to the agent's default user-level skills dir
-npx -y @yottameta/yotta-workflow --dir <your-skills-dir>   # point to the skills dir itself (e.g. ~/.codex/skills)
+npx -y @yottameta/yotta-workflow@0.4.2 --agent <agent-name>      # install to the agent's default user-level skills dir
+npx -y @yottameta/yotta-workflow@0.4.2 --dir <your-skills-dir>   # point to the skills dir itself (e.g. ~/.codex/skills)
 ```
 
 - `--agent <name>` installs to that agent's default user-level directory; `--list` shows each agent's default directory.
@@ -182,7 +182,7 @@ bash install.sh --list           # list agents -> default directories
 > Method 1 uses the npm registry (npmmirror / npmjs) and does not depend on GitHub; Methods 2/3 use GitHub and may fail without a proxy in China.
 ## Upgrade / uninstall
 
-- **Upgrade**: reinstall the latest version to overwrite — rerun the install command you used (e.g. `npx -y @yottameta/yotta-workflow --agent <name>` or `bash install.sh --agent <name>`). Old files in the skill directory are replaced; the project state files (`.workflow\`) are unaffected.
+- **Upgrade**: reinstall the latest version to overwrite — rerun the install command you used (e.g. `npx -y @yottameta/yotta-workflow@0.4.2 --agent <name>` or `bash install.sh --agent <name>`). Old files in the skill directory are replaced; the project state files (`.workflow\`) are unaffected.
 - **Uninstall**: delete the `yotta-workflow` folder under the target agent's skills directory (see the table above). Uninstalling does not affect state files already written into a project.
 
 ## FAQ

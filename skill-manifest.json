@@ -3,7 +3,7 @@
   "slug": "yotta-workflow",
   "name": "元序",
   "package": "@yottameta/yotta-workflow",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "trust": "yottameta",
   "install": {
     "idempotent": true
