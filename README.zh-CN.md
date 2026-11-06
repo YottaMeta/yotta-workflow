@@ -153,8 +153,8 @@ yotta-workflow 把「跨会话协作」沉淀为一套与智能体无关的协�
 
 ```text
 # 可选国内加速：npm config set registry https://registry.npmmirror.com
-npx -y @yottameta/yotta-workflow@0.4.4 --agent <智能体名称>      # 装到指定智能体默认用户级技能目录
-npx -y @yottameta/yotta-workflow@0.4.4 --dir <智能体的技能目录>  # 指到技能目录本身（如 ~/.codex/skills）
+npx -y @yottameta/yotta-workflow@0.4.5 --agent <智能体名称>      # 装到指定智能体默认用户级技能目录
+npx -y @yottameta/yotta-workflow@0.4.5 --dir <智能体的技能目录>  # 指到技能目录本身（如 ~/.codex/skills）
 ```
 
 - `--agent <name>` 自动装到该智能体默认用户级目录；`--list` 可查看各智能体默认目录。
@@ -182,7 +182,7 @@ bash install.sh --list           # 列出智能体 -> 默认目录
 > 方式一走 npm 源（npmmirror / npmjs），不依赖 GitHub；方式二 / 三走 GitHub，国内无代理可能失败。
 ## 升级 / 卸载
 
-- **升级**：重新安装最新版覆盖即可——重跑你用的安装命令（如 `npx -y @yottameta/yotta-workflow@0.4.4 --agent <name>` 或 `bash install.sh --agent <name>`）。技能目录内旧文件会被替换；项目里的状态文件（`.workflow\`）不受影响。
+- **升级**：重新安装最新版覆盖即可——重跑你用的安装命令（如 `npx -y @yottameta/yotta-workflow@0.4.5 --agent <name>` 或 `bash install.sh --agent <name>`）。技能目录内旧文件会被替换；项目里的状态文件（`.workflow\`）不受影响。
 - **卸载**：删除目标智能体 skills 目录下的 `yotta-workflow` 文件夹（各智能体目录见上表）。卸载不影响已写入项目的状态文件。
 
 ## 常见问题
